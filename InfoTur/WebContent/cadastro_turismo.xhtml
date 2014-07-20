@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<!-- 
+﻿    Copyright 2014 Erick Casagrande Bastos - Vinícius Soares Fonseca.
+
+﻿  ﻿  Licensed under the Apache License, Version 2.0 (the "License");
+﻿  ﻿  you may not use this file except in compliance with the License.
+﻿  ﻿  You may obtain a copy of the License at
+
+﻿  ﻿  http://www.apache.org/licenses/LICENSE-2.0
+
+﻿  ﻿  Unless required by applicable law or agreed to in writing, software
+﻿  ﻿  distributed under the License is distributed on an "AS IS" BASIS,
+﻿  ﻿  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+﻿  ﻿  See the License for the specific language governing permissions and
+   ﻿  ﻿  limitations under the License.  
+ -->
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui"
+	template="/resources/templates/template.xhtml">
+
+	<ui:define name="conteudo">
+
+		<f:facet name="last">
+			<h:outputStylesheet library="css" name="turismo.css" />
+		</f:facet>
+
+		<h:form id="conteudo-form">
+
+			<section id="formulario">
+
+				<header>
+					<h2>Cadastro de Locais Turísticos</h2>
+				</header>
+
+				<p:panelGrid columns="2" cellpadding="5" styleClass="sem-borda">
+					<p:outputLabel for="opcao" value="Escolha o tipo de local:" />
+					<p:selectOneRadio id="opcao" value="#{turismoController.tipoLocal}" styleClass="radio">
+						<f:selectItems value="#{configuracaoController.tiposLocais}" var="tipoLocal" itemValue="#{tipoLocal}"
+							itemLabel="#{tipoLocal.label}" />
+						<p:ajax update="cadastro" listener="#{imagemController.limparImagemTemp()}" />
+					</p:selectOneRadio>
+				</p:panelGrid>
+
+				<p:messages autoUpdate="true" closable="true" styleClass="mensagens" />
+
+				<p:panel id="cadastro">
+
+					<p:panel rendered="#{turismoController.tipoLocal.label eq 'Cidade'}" styleClass="sem-borda">
+						<p>
+							<h:outputText value="Nova Cidade" styleClass="titulo-cadastro" />
+						</p>
+
+						<p:panelGrid id="grid-cidade" columns="2" columnClasses="direita" styleClass="grid sem-borda">
+							<p:outputLabel for="imagem-cidade" value="Imagem:" />
+							<p:graphicImage id="imagem-cidade" cache="false" width="120" height="120" value="#{imagemController.imagemTemp}" />
+
+							<br />
+							<h:form enctype="multipart/form-data">
+								<p:fileUpload fileUploadListener="#{turismoController.receberImagemCidade}" mode="advanced" auto="true"
+									update=":conteudo-form:imagem-cidade" label="Imagem..." allowTypes="/(\.|\/)(gif|jpe?g|png)$/" />
+							</h:form>
+
+							<p:outputLabel for="nome-cidade" value="Nome:" />
+							<p:inputText id="nome-cidade" value="#{turismoController.cidadeBean.nome}" required="true"
+								requiredMessage="O campo 'Nome' é obrigatório!" />
+
+							<p:outputLabel for="descricao-cidade" value="Descrição (opcional): " />
+							<p:inputTextarea id="descricao-cidade" value="#{turismoController.cidadeBean.descricao}"></p:inputTextarea>
+
+							<p:outputLabel for="pais" value="País (opcional):" rendered="#{not empty turismoController.listaPaisesBean}" />
+							<p:selectOneListbox id="pais" value="#{turismoController.paisSelecionado}" converter="paisConverter" var="p"
+								scrollHeight="200" style="width: 300px" rendered="#{not empty turismoController.listaPaisesBean}" >
+								
+								<f:selectItems value="#{turismoController.listaPaisesBean}" var="pais" itemLabel="#{pais.nome}"
+									itemValue="#{pais}" />
+
+								<p:column>
+									<p:graphicImage cache="false" width="50" height="50" value="#{imagemController.imagemPais}">
+										<f:param name="id" value="#{p.id}" />
+									</p:graphicImage>
+								</p:column>
+								
+								<p:column>#{p.nome}</p:column>
+							</p:selectOneListbox>
+
+						</p:panelGrid>
+
+						<p:panelGrid columns="2" styleClass="botoes-grid">
+							<p:commandButton value="Salvar" actionListener="#{turismoController.salvarCidade()}" update="grid-cidade" />
+							<p:commandButton value="Limpar" type="reset" update="grid-cidade" />
+						</p:panelGrid>
+
+					</p:panel>
+
+					<p:panel rendered="#{turismoController.tipoLocal.label eq 'País'}" styleClass="sem-borda">
+						<p>
+							<h:outputText value="Novo País" styleClass="titulo-cadastro" />
+						</p>
+
+						<p:panelGrid id="grid-pais" columns="2" columnClasses="direita" styleClass="grid sem-borda">
+							<p:outputLabel for="imagem-pais" value="Imagem:" />
+							<p:graphicImage id="imagem-pais" cache="false" width="120" height="120" value="#{imagemController.imagemTemp}" />
+
+							<br />
+							<h:form enctype="multipart/form-data">
+								<p:fileUpload fileUploadListener="#{turismoController.receberImagemPais}" mode="advanced" auto="true"
+									update=":conteudo-form:imagem-pais" label="Imagem..." allowTypes="/(\.|\/)(gif|jpe?g|png)$/" />
+							</h:form>
+
+							<p:outputLabel for="nome-pais" value="Nome:" />
+							<p:inputText id="nome-pais" value="#{turismoController.paisBean.nome}" required="true"
+								requiredMessage="O campo 'Nome' é obrigatório!" />
+
+							<p:outputLabel for="descricao-pais" value="Descrição (opcional): " />
+							<p:inputTextarea id="descricao-pais" value="#{turismoController.paisBean.descricao}"></p:inputTextarea>
+
+						</p:panelGrid>
+
+						<p:panelGrid columns="2" styleClass="botoes-grid">
+							<p:commandButton value="Salvar" actionListener="#{turismoController.salvarPais()}" update="grid-pais" />
+							<p:commandButton value="Limpar" type="reset" update="grid-pais" />
+						</p:panelGrid>
+					</p:panel>
+				</p:panel>
+			</section>
+
+		</h:form>
+
+	</ui:define>
+
+</ui:composition>

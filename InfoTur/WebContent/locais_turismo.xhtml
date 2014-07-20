@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<!-- 
+﻿    Copyright 2014 Erick Casagrande Bastos - Vinícius Soares Fonseca.
+
+﻿  ﻿  Licensed under the Apache License, Version 2.0 (the "License");
+﻿  ﻿  you may not use this file except in compliance with the License.
+﻿  ﻿  You may obtain a copy of the License at
+
+﻿  ﻿  http://www.apache.org/licenses/LICENSE-2.0
+
+﻿  ﻿  Unless required by applicable law or agreed to in writing, software
+﻿  ﻿  distributed under the License is distributed on an "AS IS" BASIS,
+﻿  ﻿  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+﻿  ﻿  See the License for the specific language governing permissions and
+   ﻿  ﻿  limitations under the License.  
+ -->
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui"
+	template="/resources/templates/template.xhtml">
+
+	<ui:define name="conteudo">
+
+		<f:facet name="last">
+			<h:outputStylesheet library="css" name="turismo.css" />
+		</f:facet>
+
+		<h:form id="conteudo-form">
+
+			<h:panelGroup layout="block">
+
+				<section id="intro">
+					<header>
+						<h2>Informações sobre Locais Turísticos</h2>
+					</header>
+					<p>Veja abaixo os locais turísticos cadastrados:</p>
+				</section>
+
+				<p:messages autoUpdate="true" closable="true" styleClass="mensagens" globalOnly="true" />
+
+				<h:panelGroup id="grid-locais">
+
+					<h:outputText value="Nenhum lugar cadastrado." rendered="#{turismoController.listaCidadeBean.size() == 0}"
+						styleClass="nenhum-lugar" />
+
+					<ui:repeat var="cidade" value="#{turismoController.listaCidadeBean}">
+						<section>
+							<hr />
+							<header>
+								<h2>
+									<h:outputText value="#{cidade.nome}" />
+								</h2>
+							</header>
+
+							<p class="imagem-descricao">
+								<p:graphicImage style="float: left; margin-right: 20px;" cache="false" width="200" height="200"
+									value="#{imagemController.imagemCidade}">
+									<f:param name="id" value="#{cidade.id}" />
+								</p:graphicImage>
+								<h:outputText value="Descrição: #{cidade.descricao}" rendered="#{not empty cidade.descricao}"/>
+								<h:outputText value="Descrição: Não existe descrição cadastrada para esta cidade." rendered="#{empty cidade.descricao}" />
+								
+								<br/>
+								<br/>
+								
+								<h:outputText value="País: #{cidade.pais.nome}" rendered="#{cidade.pais ne null}"/>
+								<h:outputText value="País: Nenhum." rendered="#{cidade.pais eq null}"/>
+								
+							</p>
+
+							<p:panelGrid columns="2" styleClass="sem-borda">
+								<p:commandButton value="Remover" action="#{turismoController.removerCidade(cidade)}"
+									update=":conteudo-form:grid-locais" />
+								<br />
+								<p:commandButton value="DBPedia" action="#{turismoController.buscarConteudoExtraCidadeDBPedia(cidade)}"
+									update=":conteudo-form:extras-dbpedia" />
+								<p:commandButton value="Geonames" action="#{turismoController.buscarConteudoExtraCidadeGeonames(cidade)}"
+									update=":conteudo-form:extras-geonames" />
+							</p:panelGrid>
+
+						</section>
+					</ui:repeat>
+
+				</h:panelGroup>
+
+			</h:panelGroup>
+
+			<p:dialog id="extras-dbpedia" widgetVar="extras-dbpedia" resizable="false" header="Informações Extras" modal="true"
+				height="600" width="800">
+				<h:outputText value="#{turismoController.informacoesDBPedia}" />
+			</p:dialog>
+
+			<p:dialog id="extras-geonames" widgetVar="extras-geonames" resizable="false" header="Informações Extras" modal="true"
+				height="600" width="800">
+
+				<h:outputText value="Informações do Geonames" />
+				<br />
+				<br />
+
+				<h:outputText value="Nenhuma informação extra encontrada." rendered="#{empty turismoController.informacoesGeonames}" />
+
+				<ui:repeat var="info" value="#{turismoController.informacoesGeonames}">
+
+					<h:outputText value="Nome: #{info.nome}" />
+					<br />
+					<h:outputText value="Nomes Alternativos: #{info.nomesAlternativos}" />
+					<br />
+					<h:outputText value="Latitude: #{info.latitude}" />
+					<br />
+					<h:outputText value="Longitude: #{info.longitude}" />
+					<br />
+					<h:outputText value="População: #{info.populacao}" />
+					<br />
+					<br />
+
+				</ui:repeat>
+
+			</p:dialog>
+
+		</h:form>
+
+	</ui:define>
+
+</ui:composition>

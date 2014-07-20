@@ -1,0 +1,145 @@
+/**
+ *  Copyright 2014 Erick Casagrande Bastos - Vinícius Soares Fonseca.
+ *  
+ *  Licensed under the Apache License, Version 2.0 (the "License");
+﻿ * ﻿ you may not use this file except in compliance with the License.
+﻿ * ﻿ You may obtain a copy of the License at
+ *
+﻿ * ﻿ http://www.apache.org/licenses/LICENSE-2.0
+ *
+﻿ *﻿  Unless required by applicable law or agreed to in writing, software
+﻿ * ﻿ distributed under the License is distributed on an "AS IS" BASIS,
+﻿ *  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+﻿ * ﻿ See the License for the specific language governing permissions and
+ * ﻿ limitations under the License.  
+ */
+
+/*
+azul claro: #B7E1F9
+preto: #0D0A01
+azul escuro: #0071F5
+verde: #525401
+bege: #FFBE64
+*/
+.fundo-cabecalho-rodape {
+	background-color: #0D0A01;
+}
+
+/* Tell the browser to render HTML 5 elements as block */
+header,footer,aside,nav,article,section {
+	display: block;
+}
+
+html,body {
+	background: url("#{resource['images:background.png']}") no-repeat center
+		center fixed;
+	-webkit-background-size: cover; /* For WebKit*/
+	-moz-background-size: cover; /* Mozilla*/
+	-o-background-size: cover; /* Opera*/
+	background-size: cover;
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	margin: 0 auto;
+	width: 920px;
+	font: 13px/22px Helvetica, Arial, sans-serif;
+	background: #FFBE64;
+	border-radius: 20px 20px 20px 20px;
+}
+
+h2 {
+	font-size: 28px;
+	line-height: 44px;
+	padding-top: 40px;
+}
+
+p {
+	padding-bottom: 22px;
+}
+
+nav {
+	position: absolute;
+	left: 0;
+	width: 100%;
+	background-color: #525401;
+	color: white;
+	box-shadow: 2px 2px 7px #777;
+	
+}
+
+nav ul {
+	margin: 0 auto;
+	width: 850px;
+	list-style: none;
+}
+
+nav ul li {
+	float: left;
+}
+
+nav ul li a {
+	display: block;
+	margin-right: 60px;
+	width: 140px;
+	font-size: 14px;
+	line-height: 44px;
+	text-align: center;
+	text-decoration: none;
+	color: white;
+}
+
+nav ul li a:hover {
+	color: #0D0A01;
+}
+
+nav ul li.selected a {
+	color: #0D0A01;
+}
+
+nav ul li.subscribe a {
+	margin-left: 22px;
+	padding-left: 33px;
+	text-align: left;
+}
+
+#cabecalho {
+	color: white;
+	height: 100px;
+	line-height: 100px;
+	text-align: center;
+	margin: 20px 0;
+	border-radius: 20px 20px 0px 0px;
+}
+
+#conteudo {
+	display: table;
+	background-color: white;
+}
+
+#conteudo-principal {
+	display: table-cell;
+	width: 620px;
+	padding-left: 22px;
+}
+
+#menu-esquerdo {
+	display: table-cell;
+	color: black;
+	width: 300px;
+	padding-left: 20px;
+}
+
+#rodape {
+	color: white;
+	height: 30px;
+	line-height: 30px;
+	text-align: center;
+	margin: 22px 0;
+	border-radius: 0px 0px 20px 20px;
+}
+
+.ui-button{
+	width: 100px;	
+}
