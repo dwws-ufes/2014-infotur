@@ -16,8 +16,7 @@ InfoTur - Informações Turísticas
    limitations under the License.
    
    
-1 - Descrição
-=============
+###1 - Descrição
 
 O InfoTur é uma aplicação para cadastro de lugares turísticos criada pelos alunos Erick Casagrande Bastos e Vinícius Soares Fonseca. Esta aplicação foi criada como trabalho da disciplina de Desenvolvimento Web e Web Semântica, lecionada no Mestrado em Informática	da PPGI/UFES.
 
@@ -29,30 +28,25 @@ sua descrição e fazer upload de uma imagem.
 
 O menu Locais em RDF exibe a representação da base de dados do InfoTur no padrão Resource Description Framework - RDF. 
 
-2 - Instruções de instalação
-============================
-2.1 - Ambiente
-==============
+###2 - Instruções de instalação
+####2.1 - Ambiente
 
 - WildFly Runtime Server 8.1.0.CR2
 - IDE Eclipse Kepler - Version: Kepler Service Release 2 - Build id: 20140224-0627
 - MySQL Server 5.5.37
 - Acesso à Internet (para consultas na DBPedia e Geonames)
 
-2.2 - Banco de dados
-====================
+####2.2 - Banco de dados
 
 - Criar um esquema chamado infotur.
 - Criar um usuário chamado infotur (senha infotur).
 - Atribuír controle total (GRANT ALL) a esse esquema para o usuário infotur.
 
-2.3 - Servidor de aplicação
-===========================
+####2.3 - Servidor de aplicação
 
 - Criar um DataSource JTA informando os dados do passo 2.2 com o nome: java:/jboss/datasources/InfoTur
 
-2.4 - Execução
-==============
+#### 2.4 - Execução
 
 - Fazer a construção e implantação do InfoTur no servidor WildFly através da IDE Eclipse.
 
