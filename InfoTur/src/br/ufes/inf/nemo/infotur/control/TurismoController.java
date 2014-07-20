@@ -216,10 +216,8 @@ public class TurismoController implements Serializable {
 
     public void exibirCidadesCadastradasRDF() {
 	List<Cidade> cidades = listaCidadeBean;
-	//informacoesBancoRDF = new ArrayList<String>();
 	recurso = new StringWriter();
-	
-	
+		
 	// create an empty model
 	Model model = ModelFactory.createDefaultModel();
 	
@@ -238,11 +236,8 @@ public class TurismoController implements Serializable {
 	    }
 			    
 	}
-	    model.write(recurso, "RDF/XML-ABBREV");
-		
-	    model.write(System.out, "Turtle");
-	//informacoesBancoRDF.add(recurso.toString());
-	    
+	    model.write(recurso, "RDF/XML-ABBREV");		
+	    model.write(System.out, "Turtle");	    
     }
 	
     
@@ -303,14 +298,6 @@ public class TurismoController implements Serializable {
 	return informacoesGeonames;
     }
 
-/*    
-    public List<String> getInformacoesBancoRDF() {
-
-	exibirCidadesCadastradasRDF();
-	
-	return informacoesBancoRDF;
-    }
-*/
     public Writer getRecurso() {
 	exibirCidadesCadastradasRDF();
 	return recurso;
