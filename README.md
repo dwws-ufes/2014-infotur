@@ -37,17 +37,17 @@ O menu Locais em RDF exibe a representação da base de dados do InfoTur no padr
 
 ####2.2 - Banco de dados
 
-- Criar um esquema chamado infotur.
-- Criar um usuário chamado infotur (senha infotur).
-- Atribuír controle total (GRANT ALL) a esse esquema para o usuário infotur.
+1.  Criar um esquema chamado infotur.
+2.  Criar um usuário chamado infotur (senha infotur).
+3.  Atribuír controle total (GRANT ALL) a esse esquema para o usuário infotur.
 
 ####2.3 - Servidor de aplicação
 
-- Criar um DataSource JTA informando os dados do passo 2.2 com o nome: java:/jboss/datasources/InfoTur
+1.  Criar um DataSource JTA informando os dados do passo 2.2 com o nome: java:/jboss/datasources/InfoTur
 
 #### 2.4 - Execução
 
-- Fazer a construção e implantação do InfoTur no servidor WildFly através da IDE Eclipse.
+1.  Fazer a construção e implantação do InfoTur no servidor WildFly através da IDE Eclipse.
 
  
 
