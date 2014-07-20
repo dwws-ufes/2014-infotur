@@ -1,6 +1,6 @@
 InfoTur - Informações Turísticas
 ================================
-
+```
    Copyright 2014 Erick Casagrande Bastos - Vinícius Soares Fonseca
  
    Licensed under the Apache License, Version 2.0 (the "License");
@@ -14,8 +14,7 @@ InfoTur - Informações Turísticas
    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
    See the License for the specific language governing permissions and
    limitations under the License.
-   
-   
+```
 ###1 - Descrição
 
 O InfoTur é uma aplicação para cadastro de lugares turísticos criada pelos alunos Erick Casagrande Bastos e Vinícius Soares Fonseca. Esta aplicação foi criada como trabalho da disciplina de Desenvolvimento Web e Web Semântica, lecionada no Mestrado em Informática	da PPGI/UFES.
