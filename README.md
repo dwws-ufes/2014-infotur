@@ -48,6 +48,7 @@ O menu Locais em RDF exibe a representação da base de dados do InfoTur no padr
 #### 2.4 - Execução
 
 1.  Fazer a construção e implantação do InfoTur no servidor WildFly através da IDE Eclipse.
+2.  Abrir o navegador web no endereço http://servidor:porta/InfoTur
 
  
 
